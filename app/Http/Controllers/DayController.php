@@ -30,15 +30,19 @@ class DayController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $created_day = new Day;
+        $created_day->day_name = $request->day_name;
+        $created_day->save();
+        return $created_day;
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Day $day)
+    public function show($id)
     {
-        //
+        $day = Day::find($id);
+        return $day;
     }
 
     /**
@@ -54,14 +58,18 @@ class DayController extends Controller
      */
     public function update(Request $request, Day $day)
     {
-        //
+        $dayy = Day::find($request->id);
+        $dayy->day_name = $request->day_name;
+        $dayy->save();
+        return $dayy;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Day $day)
+    public function destroy($id)
     {
-        //
+        Day::destroy($id);
+        return true; 
     }
 }

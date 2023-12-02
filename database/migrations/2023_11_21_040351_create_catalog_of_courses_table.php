@@ -11,8 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('catalog_of_courses', function (Blueprint $table) {
-            $table->id();
+        Schema::table('catalog_of_courses', function (Blueprint $table) {
             $table->timestamps();
         });
     }

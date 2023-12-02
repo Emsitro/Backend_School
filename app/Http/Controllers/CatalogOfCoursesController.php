@@ -31,15 +31,23 @@ class CatalogOfCoursesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $created_catalog = new CatalogOfCourses;
+        $created_catalog->number_of_lessons = $request->number_of_lessons;
+        $created_catalog->price = $request->price;
+        $created_catalog->topics_to_study = $request->topics_to_study;
+        $created_catalog->curriculum_id = $request->curriculum_id;
+        $created_catalog->name = $request->name;
+        $created_catalog->save();
+        return $created_catalog;
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(CatalogOfCourses $catalogOfCourses)
+    public function show($id)
     {
-        //
+        $catalog = CatalogOfCourses::find($id);
+        return $catalog;
     }
 
     /**
@@ -55,14 +63,22 @@ class CatalogOfCoursesController extends Controller
      */
     public function update(Request $request, CatalogOfCourses $catalogOfCourses)
     {
-        //
+       $catalog = CatalogOfCourses::find($request->id);
+       $catalog->number_of_lessons = $request->number_of_lessons;
+        $catalog->price = $request->price;
+        $catalog->topics_to_study = $request->topics_to_study;
+        $catalog->curriculum_id = $request->curriculum_id;
+        $catalog->name = $request->name;
+        $catalog->save();
+        return $catalog;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CatalogOfCourses $catalogOfCourses)
+    public function destroy($id)
     {
-        //
+      CatalogOfCourses::destroy($id);
+      return true;  
     }
 }

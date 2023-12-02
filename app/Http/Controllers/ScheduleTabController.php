@@ -30,15 +30,22 @@ class ScheduleTabController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $created_Scheduletabs = new Day;
+        $created_Scheduletabs->list_of_teachers_id = $request->list_of_teachers_id;
+        $created_Scheduletabs->magazine_groups_id = $request->magazine_groups_id;
+        $created_Scheduletabs->time = $request->time;
+        $created_Scheduletabs->cabinet = $request->cabinet;
+        $created_Scheduletabs->save();
+        return $created_Scheduletabs;
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(ScheduleTab $scheduleTab)
+    public function show($id)
     {
-        //
+        $scheduleTab = ScheduleTab::find($id);
+        return $scheduleTab;
     }
 
     /**
@@ -54,14 +61,21 @@ class ScheduleTabController extends Controller
      */
     public function update(Request $request, ScheduleTab $scheduleTab)
     {
-        //
+        $scheduleTabl = ScheduleTab::find($request->id);
+        $scheduleTabl->list_of_teachers_id = $request->list_of_teachers_id;
+        $scheduleTabl->magazine_groups_id = $request->magazine_groups_id;
+        $scheduleTabl->time = $request->time;
+        $scheduleTabl->cabinet = $request->cabinet;
+        $scheduleTabl->save();
+        return $scheduleTabl;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ScheduleTab $scheduleTab)
+    public function destroy($id)
     {
-        //
+        ScheduleTab::destroy($id);
+        return true; 
     }
 }

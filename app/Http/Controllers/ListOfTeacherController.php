@@ -30,15 +30,21 @@ class ListOfTeacherController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $created_Teacher = new Day;
+        $created_Teacher->teacherscol = $request->teacherscol;
+        $created_Teacher->full_name_of_the_teacher = $request->full_name_of_the_teacher;
+        $created_Teacher->specialization = $request->specialization;
+        $created_Teacher->save();
+        return $created_Teacher;
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(ListOfTeacher $listOfTeacher)
+    public function show($id)
     {
-        //
+        $listOfTeacher = ListOfTeacher::find($id);
+        return $listOfTeacher;
     }
 
     /**
@@ -54,14 +60,20 @@ class ListOfTeacherController extends Controller
      */
     public function update(Request $request, ListOfTeacher $listOfTeacher)
     {
-        //
+        $listOfTeachera = ListOfTeacher::find($request->id);
+        $listOfTeachera->teacherscol = $request->teacherscol;
+        $listOfTeachera->full_name_of_the_teacher = $request->full_name_of_the_teacher;
+        $listOfTeachera->specialization = $request->specialization;
+        $listOfTeachera->save();
+        return $listOfTeachera;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ListOfTeacher $listOfTeacher)
+    public function destroy($id)
     {
-        //
+        ListOfTeacher::destroy($id);
+        return true; 
     }
 }

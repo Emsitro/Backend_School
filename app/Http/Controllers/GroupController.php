@@ -30,15 +30,21 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $created_Group = new Day;
+        $created_Group->full_name_of_the_student = $request->full_name_of_the_student;
+        $created_Group->parent_number = $request->parent_number;
+        $created_Group->contract_id = $request->contract_id;
+        $created_Group->save();
+        return $created_Group;
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Group $group)
+    public function show($id)
     {
-        //
+        $group = Group::find($id);
+        return $group;
     }
 
     /**
@@ -54,14 +60,20 @@ class GroupController extends Controller
      */
     public function update(Request $request, Group $group)
     {
-        //
+        $groups = Group::find($request->id);
+        $groups->full_name_of_the_student = $request->full_name_of_the_student;
+        $groups->parent_number = $request->parent_number;
+        $groups->contract_id = $request->contract_id;
+        $groups->save();
+        return $groups;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Group $group)
+    public function destroy($id)
     {
-        //
+        Group::destroy($id);
+        return true; 
     }
 }

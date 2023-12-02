@@ -11,8 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('schedule_tabs', function (Blueprint $table) {
-            $table->id();
+        Schema::table('schedule_tabs', function (Blueprint $table) {
             $table->timestamps();
         });
     }

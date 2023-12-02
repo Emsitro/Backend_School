@@ -30,15 +30,19 @@ class CurriculumController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $created_Curriculime = new Curriculum;
+        $created_Curriculime->topic_activities = $request->topic_activities;
+        $created_Curriculime->save();
+        return $created_Curriculime;
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Curriculum $curriculum)
+    public function show($id)
     {
-        //
+        $curricul = Curriculum::find($id);
+        return $curricul;
     }
 
     /**
@@ -54,14 +58,18 @@ class CurriculumController extends Controller
      */
     public function update(Request $request, Curriculum $curriculum)
     {
-        //
+        $Curriculimee = Curriculum::find($request->id);
+        $Curriculimee->topic_activities = $request->topic_activities;
+        $Curriculimee->save();
+        return $Curriculimee;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Curriculum $curriculum)
+    public function destroy($id)
     {
-        //
+        Curriculum::destroy($id);
+        return true; 
     }
 }

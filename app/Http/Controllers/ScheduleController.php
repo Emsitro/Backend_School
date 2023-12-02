@@ -30,15 +30,20 @@ class ScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $created_Schedulee = new Day;
+        $created_Schedulee->schedule_tab_id = $request->schedule_tab_id;
+        $created_Schedulee->day_id = $request->day_id;
+        $created_Schedulee->save();
+        return $created_Schedulee;
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Schedule $schedule)
+    public function show($id)
     {
-        //
+        $schedule = Schedule::find($id);
+        return $schedule;
     }
 
     /**
@@ -54,14 +59,19 @@ class ScheduleController extends Controller
      */
     public function update(Request $request, Schedule $schedule)
     {
-        //
+        $schedulee = Schedule::find($request->id);
+        $schedulee->schedule_tab_id = $request->schedule_tab_id;
+        $schedulee->day_id = $request->day_id;
+        $schedulee->save();
+        return $schedulee;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Schedule $schedule)
+    public function destroy($id)
     {
-        //
+        Schedule::destroy($id);
+        return true; 
     }
 }
